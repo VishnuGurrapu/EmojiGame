@@ -1,4 +1,4 @@
-// Write your code here.
+// EmojiCard.js
 import './index.css'
 
 const EmojiCard = props => {
@@ -7,9 +7,10 @@ const EmojiCard = props => {
   const onClickEmojiItem = () => {
     onClickEmoji(id)
   }
+  
   return (
     <li className="emojiContainer">
-      <button onClick={onClickEmojiItem} className="emojiBtn">
+      <button type="button" onClick={onClickEmojiItem} className="emojiBtn">
         <img className="emoji" alt={emojiName} src={emojiUrl} />
       </button>
     </li>

@@ -12,13 +12,16 @@ class EmojiGame extends Component {
     clickedEmojies: [],
     gameOver: false,
   }
+
   componentDidMount() {
     this.setState({emojisList: this.props.emojisList})
   }
+
   shuffledEmojisListFun = () => {
     const {emojisList} = this.state
     return emojisList.sort(() => Math.random() - 0.5)
   }
+
   onClickEmoji = id => {
     const {clickedEmojies, emojisList} = this.state
     if (clickedEmojies.includes(id)) {
@@ -45,6 +48,7 @@ class EmojiGame extends Component {
       })
     }
   }
+
   playAgain = () => {
     this.setState({
       clickedEmojies: [],
@@ -53,6 +57,7 @@ class EmojiGame extends Component {
       gameOver: false,
     })
   }
+
   render() {
     const {score, topScore, gameOver, clickedEmojies, emojisList} = this.state
 
