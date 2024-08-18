@@ -7,7 +7,7 @@ const EmojiCard = props => {
   const onClickEmojiItem = () => {
     onClickEmoji(id)
   }
-  
+
   return (
     <li className="emojiContainer">
       <button type="button" onClick={onClickEmojiItem} className="emojiBtn">

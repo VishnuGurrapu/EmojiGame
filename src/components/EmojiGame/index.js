@@ -6,7 +6,7 @@ import WinOrLoseCard from '../WinOrLoseCard'
 
 class EmojiGame extends Component {
   state = {
-    emojisList: [],
+    emojisList: this.props,
     score: 0,
     topScore: 0,
     clickedEmojies: [],
@@ -14,7 +14,8 @@ class EmojiGame extends Component {
   }
 
   componentDidMount() {
-    this.setState({emojisList: this.props.emojisList})
+    const {emojisList} = this.props
+    this.setState({emojisList})
   }
 
   shuffledEmojisListFun = () => {
@@ -29,15 +30,29 @@ class EmojiGame extends Component {
         gameOver: true,
       })
     } else if (clickedEmojies.length === emojisList.length - 1) {
+      const {score, topScore} = this.state
+
+      const shuffledEmojisList = this.shuffledEmojisListFun()
+      const updatedclickedEmojies = [...clickedEmojies, id]
+      const newScore = score + 1
+      let newTopScore = topScore
+      if (newScore >= topScore) {
+        newTopScore = newScore
+      }
       this.setState({
+        clickedEmojies: updatedclickedEmojies,
+        emojisList: shuffledEmojisList,
+        score: newScore,
+        topScore: newTopScore,
         gameOver: true,
       })
     } else {
+      const {score, topScore} = this.state
       const shuffledEmojisList = this.shuffledEmojisListFun()
       const updatedclickedEmojies = [...clickedEmojies, id]
-      let newScore = this.state.score + 1
-      let newTopScore = this.state.topScore
-      if (newScore >= this.state.topScore) {
+      const newScore = score + 1
+      let newTopScore = topScore
+      if (newScore >= topScore) {
         newTopScore = newScore
       }
       this.setState({
@@ -59,7 +74,8 @@ class EmojiGame extends Component {
   }
 
   render() {
-    const {score, topScore, gameOver, clickedEmojies, emojisList} = this.state
+    const {emojisList} = this.props
+    const {score, topScore, gameOver, clickedEmojies} = this.state
 
     return (
       <div className="bgContainer">
